@@ -23,11 +23,15 @@ class VideoPlayerApp extends StatefulWidget {
 
 class _VideoPlayerAppState extends State<VideoPlayerApp> {
   int? id;
-  bool? isLoggedIn;
+  late bool isLoggedIn;
 
   @override
   void initState() {
-    checkId();
+    WidgetsBinding.instance!.addPostFrameCallback((_) async {
+      await checkId();
+      setState(() {});
+    });
+
     super.initState();
   }
 
@@ -35,14 +39,14 @@ class _VideoPlayerAppState extends State<VideoPlayerApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Video Player Demo',
-      home: isLoggedIn == false
+      home: isLoggedIn == false && id == null
           ? AlertDialogScreen()
           : VideoPlayerScreen(id: id!),
       debugShowCheckedModeBanner: false,
     );
   }
 
-  void checkId() async {
+  Future checkId() async {
     isLoggedIn = await AppRepo.getInstance().isLoggedIn();
     id = await AppRepo.getInstance().getID();
 
