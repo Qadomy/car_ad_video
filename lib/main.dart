@@ -103,11 +103,11 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
     try {
       vdlist.add(
-          "/data/data/com.example.flutter_app/app_flutter/videos/video.mp4");
+          "/data/data/com.example.car_ad_video/app_flutter/videos/video.mp4");
       dataSourceList.add(
         BetterPlayerDataSource(
           BetterPlayerDataSourceType.file,
-          "/data/data/com.example.flutter_app/app_flutter/videos/video.mp4",
+          "/data/data/com.example.car_ad_video/app_flutter/videos/video.mp4",
         ),
       );
     } on io.IOException catch (_) {
